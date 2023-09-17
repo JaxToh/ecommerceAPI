@@ -5,7 +5,7 @@ package com.ecommerceAPI.apiproject.exceptions;
 /*exception type is a class that represents a possible error that can occur in a program. 
 Exceptions are used to handle unexpected events and to prevent the program from crashing. */
 
-public class ProductNotFoundException extends RuntimeException{
+public class ProductInteractionNotFoundException extends RuntimeException{
   
     
     // public ProductNotFoundException(Long id) {
@@ -15,10 +15,10 @@ public class ProductNotFoundException extends RuntimeException{
 //constructors
 
 
-      public ProductNotFoundException(String message, Throwable cause) {
+      public ProductInteractionNotFoundException(String message, Throwable cause) {
     super(message,cause);}
 
-    public ProductNotFoundException(Long id) {
+    public ProductInteractionNotFoundException(Long id) {
       super("Could not find product with ID: " + id);
   }
 
