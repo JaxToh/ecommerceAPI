@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
+import com.ecommerceAPI.apiproject.entity.Cart;
 import com.ecommerceAPI.apiproject.entity.Order;
 import com.ecommerceAPI.apiproject.repository.OrderRepository;
 import com.ecommerceAPI.apiproject.exceptions.OrderNotFoundException;
@@ -54,4 +55,44 @@ public class OrderServiceImpl implements OrderService {
     public void deleteOrder(Long id) {
         orderRepository.deleteById(id);
     }
+
+    @Override
+    public Order processOrderFromCart(Long cartId) {
+        // 1. Fetch cart by ID
+        Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new RuntimeException("Cart not found"));
+
+        // 2. Create a new Order object and populate it with items from the cart
+        Order newOrder = new Order();
+
+        double totalOrderPrice = 0.0;
+        List<CartItem> cartItemsList = new ArrayList<>();
+
+        for (CartItem cartItem : cart.getCartItems()) {
+            double itemTotalPrice = cartItem.getQuantity() * cartItem.getUnitPrice();
+            totalOrderPrice += itemTotalPrice;
+
+            // your Order
+            CartItem orderItem = convertCartItemToOrderItem(cartItem);
+            cartItemsList.add(orderItem);
+        }
+
+        newOrder.setCartItems(cartItemsList);
+        newOrder.setTotalPrice(totalOrderPrice);
+        newOrder.setOrderStatus(OrderStatus.PLACED);
+
+        // 3. Save the order
+        Order savedOrder = orderRepository.save(newOrder);
+
+        // 4. Clear the cart items or delete the cart
+        cartRepository.deleteById(cartId);
+
+        // 5. Return the saved order
+        return savedOrder;
+    }
+
+    private CartItem convertCartItemToOrderItem(CartItem cartItem) {
+
+        return cartItem;
+    }
+
 }

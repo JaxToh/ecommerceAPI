@@ -14,4 +14,6 @@ public interface OrderService {
     Order updateOrder(Long id, Order order);
 
     void deleteOrder(Long id);
+
+    Order processOrderFromCart(Long cartId);
 }
