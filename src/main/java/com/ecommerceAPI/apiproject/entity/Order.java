@@ -21,6 +21,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.CustomLog;
 
+public enum OrderStatus {
+    PLACED, SHIPPED, DELIVERED, CANCELLED
+}
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -34,8 +38,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Product name cannot be null")
-    private String productName;
+    @NotNull(message = "Product details cannot be null")
+    private String productDetails;
 
     @NotNull(message = "Quantity cannot be null")
     private Integer quantity;
@@ -46,13 +50,6 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<CartItem> cartItems;
-
     @ManyToOne
     private Customer customer;
-}
-
-enum OrderStatus {
-    PLACED, SHIPPED, DELIVERED, CANCELLED
 }

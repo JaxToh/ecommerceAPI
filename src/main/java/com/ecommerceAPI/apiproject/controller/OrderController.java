@@ -43,4 +43,9 @@ public class OrderController {
         orderService.deleteOrder(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @PostMapping("/processFromCart/{cartId}")
+    public ResponseEntity<Order> processOrderFromCart(@PathVariable Long cartId) {
+        return new ResponseEntity<>(orderService.processOrderFromCart(cartId), HttpStatus.CREATED);
+    }
 }
