@@ -58,9 +58,7 @@ public class CartServiceImpl implements CartService {
             cartToUpdate.setAmount(cart.getAmount());
             cartToUpdate.setProducts(cart.getProducts());
     
-            // Decrease the available quantity of the product
-            // product.setQuantity(availableQuantity - requestedQuantity);
-            // productRepository.save(product);
+          
     
             // Save the updated cart to the database
             return cartRepository.save(cartToUpdate);
@@ -76,5 +74,7 @@ public class CartServiceImpl implements CartService {
     public void deleteCart(Long id) {
         cartRepository.deleteById(id);
     }
+
+    
 
 }
