@@ -1,4 +1,4 @@
-package com.ecommerceAPI.apiproject.exceptions;
+package com.ecommerceAPI.apiproject.exception;
 
 public class ProductNotFoundException extends RuntimeException{
     public ProductNotFoundException(Long id) {

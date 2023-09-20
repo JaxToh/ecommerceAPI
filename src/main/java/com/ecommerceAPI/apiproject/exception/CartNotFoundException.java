@@ -1,4 +1,4 @@
-package com.ecommerceAPI.apiproject.exceptions;
+package com.ecommerceAPI.apiproject.exception;
 
 public class CartNotFoundException extends RuntimeException {
   public CartNotFoundException(Long id) {
