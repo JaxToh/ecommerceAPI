@@ -18,6 +18,9 @@ import com.ecommerceAPI.apiproject.security.model.LoginResponse;
 import com.ecommerceAPI.apiproject.security.model.RegistrationBody;
 import com.ecommerceAPI.apiproject.service.UserService;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {

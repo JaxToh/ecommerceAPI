@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
     ProductToUpdate.setShortDescription(Product.getShortDescription());
     ProductToUpdate.setLongDescription(Product.getLongDescription());
     ProductToUpdate.setPrice(Product.getPrice());
-    ProductToUpdate.setStock(Product.getStock());
+    //ProductToUpdate.setStock(Product.getStock());
     return productRepository.save(ProductToUpdate);
   }
 

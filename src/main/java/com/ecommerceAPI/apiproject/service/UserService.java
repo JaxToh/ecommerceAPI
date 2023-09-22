@@ -7,7 +7,7 @@ import com.ecommerceAPI.apiproject.security.model.LoginBody;
 import com.ecommerceAPI.apiproject.security.model.RegistrationBody;
 
 public interface UserService {
-  User createUser(User user);
+  //User createUser(User user);
 
   User getUser(Long id);
 
@@ -20,6 +20,9 @@ public interface UserService {
   List<User> searchUsers(String firstName);
 
   User registerUser(RegistrationBody registrationBody) throws UserAlreadyExistsException;
+
+//User registerUser(User User) throws UserAlreadyExistsException;
+
 
   String loginUser(LoginBody loginBody);
 

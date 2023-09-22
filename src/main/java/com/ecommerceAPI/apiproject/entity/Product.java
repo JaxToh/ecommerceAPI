@@ -2,6 +2,7 @@ package com.ecommerceAPI.apiproject.entity;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -29,8 +30,9 @@ public class Product {
   @Column(name = "price", nullable = false)
   private Double price;
 
-  @Column(name = "stock", nullable = false)
-  private int stock;
+  // @NotBlank(message = "Stock cannot be 0")
+  // @Column(name = "stock", nullable = false)
+  // private int stock;
 
 
 }
