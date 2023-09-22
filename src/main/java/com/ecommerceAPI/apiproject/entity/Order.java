@@ -52,4 +52,10 @@ public class Order {
 
     @ManyToOne
     private Customer customer;
+
+    public Long getProductId() {
+        return null;
+    }
+
+    // how is order related to cart
 }
