@@ -7,16 +7,15 @@ import org.springframework.stereotype.Service;
 import com.ecommerceAPI.apiproject.entity.Product;
 import com.ecommerceAPI.apiproject.exception.ProductNotFoundException;
 import com.ecommerceAPI.apiproject.repository.ProductRepository;
+
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
+  private ProductRepository productRepository;
 
-    private ProductRepository productRepository;
-
-    public ProductServiceImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
-    
+  public ProductServiceImpl(ProductRepository productRepository) {
+    this.productRepository = productRepository;
+  }
 
   // Create
   @Override
@@ -47,14 +46,13 @@ public class ProductServiceImpl implements ProductService{
     Product ProductToUpdate = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
 
     // Update the fields
-    ProductToUpdate.setProductName(Product.getProductName());
-    ProductToUpdate.setProductCat(Product.getProductCat());
-    ProductToUpdate.setProductDesc(Product.getProductDesc());
-    ProductToUpdate.setQuantity(Product.getQuantity());
-    ProductToUpdate.setProductPrice(Product.getProductPrice());
+    ProductToUpdate.setName(Product.getName());
+    ProductToUpdate.setShortDescription(Product.getShortDescription());
+    ProductToUpdate.setLongDescription(Product.getLongDescription());
+    ProductToUpdate.setPrice(Product.getPrice());
+    ProductToUpdate.setStock(Product.getStock());
     return productRepository.save(ProductToUpdate);
   }
-
 
   // Delete
   @Override
@@ -62,12 +60,10 @@ public class ProductServiceImpl implements ProductService{
     productRepository.deleteById(id);
   }
 
+  @Override
+  public List<Product> searchProducts(String name) {
+    List<Product> foundProducts = productRepository.findByName(name);
+    return foundProducts;
+  }
 
-    @Override
-    public List<Product> searchProducts(String productName) {
-        List<Product> foundProducts = productRepository.findByproductName(productName);
-        return foundProducts;
-    }
-
-    
 }

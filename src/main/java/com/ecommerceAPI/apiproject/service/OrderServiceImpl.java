@@ -4,12 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.ecommerceAPI.apiproject.entity.Cart;
 import com.ecommerceAPI.apiproject.entity.Order;
-import com.ecommerceAPI.apiproject.entity.OrderStatus;
-import com.ecommerceAPI.apiproject.exception.CartNotFoundException;
+import com.ecommerceAPI.apiproject.entity.User;
 import com.ecommerceAPI.apiproject.exception.OrderNotFoundException;
-import com.ecommerceAPI.apiproject.repository.CartRepository;
 import com.ecommerceAPI.apiproject.repository.OrderRepository;
 
 import lombok.AllArgsConstructor;
@@ -19,7 +16,6 @@ import lombok.AllArgsConstructor;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
-    private final CartRepository cartRepository;
 
     // Create
     @Override
@@ -43,10 +39,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order updateOrder(Long id, Order order) {
         Order orderToUpdate = orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException(id));
-        orderToUpdate.setProductDetails(order.getProductDetails());
-        orderToUpdate.setQuantity(order.getQuantity());
-        orderToUpdate.setTotalPrice(order.getTotalPrice());
-        orderToUpdate.setOrderStatus(order.getOrderStatus());
         return orderRepository.save(orderToUpdate);
     }
 
@@ -56,20 +48,9 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.deleteById(id);
     }
 
-    @Override
-    public Order processOrderFromCart(Long cartId) {
-        Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new CartNotFoundException(cartId));
-        Order newOrder = new Order();
-
-        newOrder.setProductDetails("Multiple Products");
-        newOrder.setQuantity(cart.getQuantity());
-        newOrder.setTotalPrice((double) cart.getAmount());
-        newOrder.setOrderStatus(OrderStatus.PLACED);
-        newOrder.setCustomer(cart.getCustomer());
-
-        Order savedOrder = orderRepository.save(newOrder);
-        cartRepository.deleteById(cartId);
-        return savedOrder;
-    }
+    // @Override
+    // public List<Order> getOrdersOfUser(User user) {
+    //     return orderRepository.findByUser(user);
+    // }
 
 }

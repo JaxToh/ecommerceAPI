@@ -1,46 +1,29 @@
 package com.ecommerceAPI.apiproject.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.*;
+import javax.persistence.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@EqualsAndHashCode
 @Entity
-@Table(name = "orders")
+@Table(name = "order_tbl")
 public class Order {
-    
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id", nullable = false)
+  private Long id;
 
-    @NotNull(message = "Product details cannot be null")
-    private String productDetails;
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "user_id", nullable = false)
+  private User user;
 
-    @NotNull(message = "Quantity cannot be null")
-    private Integer quantity;
-
-    @NotNull(message = "Total price cannot be null")
-    private Double totalPrice;
-
-    @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
-
-    @ManyToOne
-    private Customer customer;
+  @OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE, orphanRemoval = true)
+  private List<OrderDetails> orderDetails = new ArrayList<>();
 }

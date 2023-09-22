@@ -15,6 +15,6 @@ public interface ProductService {
 
     void deleteProduct(Long id);
 
-    List<Product> searchProducts(String productName); // Corrected method name
-    
+    List<Product> searchProducts(String name);
+
 }

@@ -21,23 +21,13 @@ import com.ecommerceAPI.apiproject.service.ProductService;
 import lombok.AllArgsConstructor;
 
 
-@RestController
-@RequestMapping("/products")/*annotation to map HTTP requests to handler methods in Spring MVC controllers. */
 @AllArgsConstructor
+@RestController
+@RequestMapping("/products")
 
 public class ProductController {
 
-// private List<Product> allProduct;
-// //define @PostConstruct to load all the product data...only once
-// @PostConstruct
-// public void loadProduct(){
-//     allProduct = new ArrayList<>();
-//     allProduct.add(new Product("iPhone 14", "smartphones", "An apple mobile which is nothing like apple", null, 1299.10));
-//     allProduct.add(new Product("iPhone 15", "smartphones", "An apple mobile A16 Bionic powers all kinds of advanced features.", null, 1499.10));
-//     allProduct.add(new Product("iPhone 15 pro", "smartphones", "An apple mobile only for the professionals ", null, 1699.10));
-// }
   private ProductService productService;
-
 
   // CREATE
   @PostMapping("")
@@ -47,7 +37,7 @@ public class ProductController {
 
   // READ (GET ALL)
   @GetMapping("")
-  public ResponseEntity<List<Product>> getAllProduct() {
+  public ResponseEntity<List<Product>> getAllProducts() {
     return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
   }
 
@@ -75,26 +65,6 @@ public class ProductController {
   public ResponseEntity<List<Product>> searchProduct(@RequestParam String firstName) {
     return new ResponseEntity<>(productService.searchProducts(firstName), HttpStatus.OK);
   }
-
-
-
-
-// //Define endpoint for /allproducts - return a list of all products
-//     @GetMapping("/product")
-// public List<Product> getProduct(){
-//     return allProduct;
-// }
-
-// //Define endpoint for /product/{productId} - return a product with id
-// @GetMapping("/product/{productId}")
-// public Product getProduct(@PathVariable int productId){
-// //check the product id against list size
-// if((productId>=allProduct.size())||(productId<0)){
-//    throw new ProductNotFoundException("Product id not found" + productId);
-// }
-// return allProduct.get(productId);
-// }
-
 
 
     }

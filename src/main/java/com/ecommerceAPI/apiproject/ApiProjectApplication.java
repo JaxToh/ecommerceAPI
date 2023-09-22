@@ -12,10 +12,7 @@ public class ApiProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApiProjectApplication.class, args);
 		logger.info("Application started");
-		logger.info("This is an informational message.");
-		logger.error("This is an error message.");
-		logger.warn("This is a warning message.");
-		logger.info("Application ended");
+
 	}
 
 }

@@ -11,30 +11,15 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.ecommerceAPI.apiproject.exception.CustomerNotFoundException;
+import com.ecommerceAPI.apiproject.exception.UserNotFoundException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-  // SPECIFIC EXCEPTION HANDLERS
-  // @ExceptionHandler(CustomerNotFoundException.class)
-  // public ResponseEntity<ErrorResponse>
-  // handleCustomerNotFoundExcetion(CustomerNotFoundException ex) {
-  // ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(),
-  // LocalDateTime.now());
-  // return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-  // }
 
-  // @ExceptionHandler(InteractionNotFoundException.class)
-  // public ResponseEntity<ErrorResponse>
-  // handleInteractionNotFoundExcetion(InteractionNotFoundException ex) {
-  // ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(),
-  // LocalDateTime.now());
-  // return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-  // }
 
   // RESOURCE NOT FOUND EXCEPTION HANDLER
-  @ExceptionHandler({ CustomerNotFoundException.class })
+  @ExceptionHandler({ UserNotFoundException.class })
   public ResponseEntity<ErrorResponse> handleResourceNotFoundException(Exception ex) {
     ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), LocalDateTime.now());
     return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);

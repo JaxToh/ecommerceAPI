@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.ecommerceAPI.apiproject.entity.Order;
 
+
 public interface OrderService {
+
     Order createOrder(Order order);
 
     List<Order> getAllOrders();
@@ -15,5 +17,6 @@ public interface OrderService {
 
     void deleteOrder(Long id);
 
-    Order processOrderFromCart(Long cartId);
+    // List<Order> getOrdersOfUser(User user);
+
 }

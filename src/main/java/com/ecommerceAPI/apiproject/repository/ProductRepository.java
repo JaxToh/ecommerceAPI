@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.ecommerceAPI.apiproject.entity.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-  List<Product> findByproductName(String productName);
+  List<Product> findByName(String name);
 }
