@@ -24,11 +24,11 @@ public class UserServiceImpl implements UserService {
   private JWTService jwtService;
 
   // Create
-  @Override
-  public User createUser(User user) {
-    // return customer;
-    return userRepository.save(user);
-  }
+  // @Override
+  // public User createUser(User user) {
+  //   // return customer;
+  //   return userRepository.save(user);
+  // }
 
   // Get One
   @Override

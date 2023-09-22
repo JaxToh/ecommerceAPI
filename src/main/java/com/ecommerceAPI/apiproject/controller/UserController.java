@@ -20,10 +20,10 @@ public class UserController {
   private UserService userService;
 
   // CREATE
-  @PostMapping("")
-  public ResponseEntity<User> createCustomer(@Valid @RequestBody User user) {
-    return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
-  }
+  // @PostMapping("")
+  // public ResponseEntity<User> createCustomer(@Valid @RequestBody User user) {
+  //   return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
+  // }
 
   // READ (GET ALL)
   @GetMapping("")
